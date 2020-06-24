@@ -1,26 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import FeatureEditor from './FeatureEditor'
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    const featureTxt = [
+      "Feature: Shout thing",
+      "Scenario: my scenario",
+      "  Given a \"context\"",
+      "  When I do things",
+      "  Then I should see some benefits",
+      "Scenario Outline: my other scenario",
+      "  Given some <data>"
+    ]
+    this.state = {
+      txtDefinition: featureTxt.join("\n")
+    }
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  render() {
+    return (
+      <div>
+        <FeatureEditor txtDefinition={this.state.txtDefinition}/>
+      </div>
+    )
+  }
 }
 
 export default App;
