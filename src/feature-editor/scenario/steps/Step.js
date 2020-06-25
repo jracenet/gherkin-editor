@@ -1,18 +1,14 @@
 import React from 'react'
+import Annotation from './Annotation'
+import Text from './Text'
 
-export default class Scenario extends React.Component {
-  constructor(props) {
-    super(props)
-    console.log(props.step)
-  }
-
+export default class Step extends React.Component {
   render() {
     return (
-      <li>{this.step()}</li>
+      <li>
+          <Annotation annotation={this.props.step.keyword}/>
+          <Text text={this.props.step.text} />
+      </li>
     )
-  }
-
-  step() {
-    return `${this.props.step.keyword} ${this.props.step.text}`
   }
 }

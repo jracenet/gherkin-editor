@@ -2,10 +2,6 @@ import React from 'react'
 import ScenarioStep from './steps/Step'
 
 export default class Scenario extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <li>
