@@ -1,12 +1,11 @@
 import React from 'react';
-import Gherkin from 'gherkin'
 import Title from './feature-editor/title/Title'
 import Scenario from './feature-editor/scenario/Scenario'
 
 export default class FeatureEditor extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { ast: this.computeAst() }
+    this.onUpdateFeatureName = this.updateFeatureName.bind(this)
   }
 
   render() {
@@ -15,7 +14,7 @@ export default class FeatureEditor extends React.Component {
     )
     return (
       <div>
-        <Title title={this.featureTitle()}/>
+        <Title title={this.featureName()} updateFeatureName={this.onUpdateFeatureName}/>
         <ul>
           {scenarioList}
         </ul>
@@ -23,19 +22,18 @@ export default class FeatureEditor extends React.Component {
     )
   }
 
-  computeAst() {
-    const parser = new Gherkin.Parser(new Gherkin.AstBuilder())
-    const scanner = new Gherkin.TokenScanner(this.props.txtDefinition)
-    const matcher = new Gherkin.TokenMatcher()
-
-    return parser.parse(scanner, matcher)
-  }
-
-  featureTitle() {
-    return this.state.ast.feature.name
+  featureName() {
+    return this.props.ast.feature.name
   }
 
   featureScenarios() {
-    return this.state.ast.feature.children
+    return this.props.ast.feature.children
+  }
+
+  updateFeatureName(newName) {
+    let updatedAst = Object.assign(this.props.ast)
+    updatedAst.feature.name = newName
+
+    this.props.onAstUpdated(updatedAst)
   }
 }

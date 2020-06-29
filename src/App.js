@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import FeatureEditor from './FeatureEditor'
 import FeatureRenderer from './FeatureRenderer'
+import Gherkin from 'gherkin'
+import AstToGherkinConverter from './lib/AstToGherkinConverter'
 
 class App extends React.Component {
   constructor(props) {
@@ -14,19 +16,42 @@ class App extends React.Component {
       "  When I do things",
       "  Then I should see some benefits",
      ""
-    ]
+    ].join("\n")
+
+    const featureAst = this.computeAst(featureTxt)
+
     this.state = {
-      txtDefinition: featureTxt.join("\n")
+      txtDefinition: featureTxt,
+      ast: featureAst
     }
+
+    this.onAstUpdated = this.updateAst.bind(this)
   }
 
   render() {
     return (
       <div>
-        <FeatureEditor txtDefinition={this.state.txtDefinition}/>
+        <FeatureEditor ast={this.state.ast} onAstUpdated={this.onAstUpdated} />
         <FeatureRenderer txtDefinition={this.state.txtDefinition}/>
       </div>
     )
+  }
+
+  computeAst(textDef) {
+    const parser = new Gherkin.Parser(new Gherkin.AstBuilder())
+    const scanner = new Gherkin.TokenScanner(textDef)
+    const matcher = new Gherkin.TokenMatcher()
+
+    return parser.parse(scanner, matcher)
+  }
+
+  updateAst(newAst) {
+    const newTxtDefinition = new AstToGherkinConverter(newAst).toGherkin()
+
+    this.setState({
+      ast: newAst,
+      txtDefinition: newTxtDefinition
+    })
   }
 }
 
