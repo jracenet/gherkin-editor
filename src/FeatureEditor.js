@@ -6,11 +6,12 @@ export default class FeatureEditor extends React.Component {
   constructor(props) {
     super(props)
     this.onUpdateFeatureName = this.updateFeatureName.bind(this)
+    this.onUpdateFeatureChild = this.updateFeatureChild.bind(this)
   }
 
   render() {
-    const scenarioList = this.featureScenarios().map((sc) =>
-      <Scenario scenario={sc}/>
+    const scenarioList = this.featureScenarios().map((sc, index) =>
+      <Scenario scenario={sc} index={index} updateFeatureChild={this.onUpdateFeatureChild}/>
     )
     return (
       <div>
@@ -33,6 +34,13 @@ export default class FeatureEditor extends React.Component {
   updateFeatureName(newName) {
     let updatedAst = Object.assign(this.props.ast)
     updatedAst.feature.name = newName
+
+    this.props.onAstUpdated(updatedAst)
+  }
+
+  updateFeatureChild(childAst, index) {
+    let updatedAst = Object.assign(this.props.ast)
+    updatedAst.feature.children[index] = childAst
 
     this.props.onAstUpdated(updatedAst)
   }
