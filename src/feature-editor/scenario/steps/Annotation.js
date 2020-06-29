@@ -4,14 +4,19 @@ export default class Annotation extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      annotation: props.annotation
-    }
+    this.handleChange = this.handleChange.bind(this)
   }
+
+  handleChange(e) {
+    this.props.onAnnotationChange(e.target.value)
+  }
+
   render() {
     return (
       <span>
-        <input type="text" defaultValue={this.state.annotation.trim()} name="annotation" list="annotations"/>
+        <input type="text" defaultValue={this.props.annotation.trim()}
+        name="annotation"
+        list="annotations" onBlur={this.handleChange}/>
 
         <datalist id="annotations">
           <select>
