@@ -5,6 +5,7 @@ export default class Scenario extends React.Component {
   constructor(props) {
     super(props)
     this.onEditScenarioName = this.editScenarioName.bind(this)
+    this.onEditStep = this.editStep.bind(this)
   }
 
   render() {
@@ -25,15 +26,20 @@ export default class Scenario extends React.Component {
   }
 
   scenarioSteps() {
-    return this.props.scenario.steps.map((step) =>
-      <ScenarioStep step={step}/>
+    return this.props.scenario.steps.map((step, index) =>
+      <ScenarioStep step={step} index={index} onEditStep={this.onEditStep}/>
     )
   }
 
   editScenarioName(e) {
     let newScenarioAst = Object.assign(this.props.scenario)
     newScenarioAst.name = e.target.value
-    console.log(newScenarioAst)
+    this.props.updateFeatureChild(newScenarioAst, this.props.index)
+  }
+
+  editStep(stepAst, index) {
+    let newScenarioAst = Object.assign(this.props.scenario)
+    newScenarioAst.steps[index] = stepAst
     this.props.updateFeatureChild(newScenarioAst, this.props.index)
   }
 }
