@@ -6,6 +6,7 @@ export default class Scenario extends React.Component {
     super(props)
     this.onEditScenarioName = this.editScenarioName.bind(this)
     this.onEditStep = this.editStep.bind(this)
+    this.addStep = this.addStep.bind(this)
   }
 
   render() {
@@ -14,6 +15,7 @@ export default class Scenario extends React.Component {
         {this.scenarioHeader()}
         <ul>
           {this.scenarioSteps()}
+          <button onClick={this.addStep}>+ Add step</button>
         </ul>
       </li>
     )
@@ -41,5 +43,13 @@ export default class Scenario extends React.Component {
     let newScenarioAst = Object.assign(this.props.scenario)
     newScenarioAst.steps[index] = stepAst
     this.props.updateFeatureChild(newScenarioAst, this.props.index)
+  }
+
+  addStep() {
+    let newScenarioAst = Object.assign(this.props.scenario)
+    const scenarioLength = this.props.scenario.steps.length,
+          lastStep = this.props.scenario.steps[scenarioLength - 1]
+
+    this.props.addNewStepLine(lastStep.location)
   }
 }

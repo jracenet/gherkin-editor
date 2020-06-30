@@ -11,7 +11,7 @@ export default class FeatureEditor extends React.Component {
 
   render() {
     const scenarioList = this.featureScenarios().map((sc, index) =>
-      <Scenario scenario={sc} index={index} updateFeatureChild={this.onUpdateFeatureChild}/>
+      <Scenario scenario={sc} index={index} updateFeatureChild={this.onUpdateFeatureChild} addNewStepLine={this.props.addNewStepLine}/>
     )
     return (
       <div>

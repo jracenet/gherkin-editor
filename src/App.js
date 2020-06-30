@@ -15,6 +15,11 @@ class App extends React.Component {
       "  Given a \"context\"",
       "  When I do things",
       "  Then I should see some benefits",
+      "",
+      "Scenario: my scenario",
+      "  Given a \"context\"",
+      "  When I do things",
+      "  Then I should see some benefits",
      ""
     ].join("\n")
 
@@ -26,12 +31,13 @@ class App extends React.Component {
     }
 
     this.onAstUpdated = this.updateAst.bind(this)
+    this.onAddNewStepLine = this.addNewStepLine.bind(this)
   }
 
   render() {
     return (
       <div>
-        <FeatureEditor ast={this.state.ast} onAstUpdated={this.onAstUpdated} />
+        <FeatureEditor ast={this.state.ast} onAstUpdated={this.onAstUpdated} addNewStepLine={this.onAddNewStepLine}/>
         <FeatureRenderer txtDefinition={this.state.txtDefinition}/>
       </div>
     )
@@ -50,6 +56,19 @@ class App extends React.Component {
 
     this.setState({
       ast: newAst,
+      txtDefinition: newTxtDefinition
+    })
+  }
+
+  addNewStepLine(location) {
+    let newTxtDefinition = Object.assign(this.state.txtDefinition)
+    let defAsArray = newTxtDefinition.split("\n")
+    const spaces = new Array(location.column).join(" ")
+    defAsArray.splice(location.line, 0, spaces + "* ")
+    newTxtDefinition = defAsArray.join("\n")
+
+    this.setState({
+      ast: this.computeAst(newTxtDefinition),
       txtDefinition: newTxtDefinition
     })
   }
