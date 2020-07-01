@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/gherkin-editor/precache-manifest.36574ca5dc4945b4ea7c200527c82946.js"
+  "/gherkin-editor/precache-manifest.a66d5e35eb20a1f320b6c188b5425d30.js"
 );
 
 self.addEventListener('message', (event) => {

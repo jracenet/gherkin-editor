@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4f7a582a62b3204724f72bd00e7c9615",
+    "revision": "5c5aec32d260d2c391de2ba822333083",
     "url": "/gherkin-editor/index.html"
   },
   {
-    "revision": "b17e03495eef424b848f",
+    "revision": "d5c52ae325a13a796793",
     "url": "/gherkin-editor/static/css/main.5f361e03.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/gherkin-editor/static/js/2.54a1114c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b17e03495eef424b848f",
-    "url": "/gherkin-editor/static/js/main.39032c79.chunk.js"
+    "revision": "d5c52ae325a13a796793",
+    "url": "/gherkin-editor/static/js/main.c8d65d64.chunk.js"
   },
   {
     "revision": "966310e41c67b841bf1c",
