@@ -18,6 +18,7 @@ export default class FeatureEditor extends React.Component {
         <Title title={this.featureName()} updateFeatureName={this.onUpdateFeatureName}/>
         <ul>
           {scenarioList}
+          <button onClick={this.props.addNewScenario}>+ Add scenario</button>
         </ul>
       </div>
     )

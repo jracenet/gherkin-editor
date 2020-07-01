@@ -16,11 +16,6 @@ class App extends React.Component {
       "  When I do things",
       "  Then I should see some benefits",
       "",
-      "Scenario: my scenario",
-      "  Given a \"context\"",
-      "  When I do things",
-      "  Then I should see some benefits",
-     ""
     ].join("\n")
 
     const featureAst = this.computeAst(featureTxt)
@@ -32,12 +27,13 @@ class App extends React.Component {
 
     this.onAstUpdated = this.updateAst.bind(this)
     this.onAddNewStepLine = this.addNewStepLine.bind(this)
+    this.onAddNewScenario = this.addNewScenario.bind(this)
   }
 
   render() {
     return (
       <div>
-        <FeatureEditor ast={this.state.ast} onAstUpdated={this.onAstUpdated} addNewStepLine={this.onAddNewStepLine}/>
+        <FeatureEditor ast={this.state.ast} onAstUpdated={this.onAstUpdated} addNewStepLine={this.onAddNewStepLine} addNewScenario={this.onAddNewScenario}/>
         <FeatureRenderer txtDefinition={this.state.txtDefinition}/>
       </div>
     )
@@ -65,6 +61,19 @@ class App extends React.Component {
     let defAsArray = newTxtDefinition.split("\n")
     const spaces = new Array(location.column).join(" ")
     defAsArray.splice(location.line, 0, spaces + "* ")
+    newTxtDefinition = defAsArray.join("\n")
+
+    this.setState({
+      ast: this.computeAst(newTxtDefinition),
+      txtDefinition: newTxtDefinition
+    })
+  }
+
+  addNewScenario() {
+    let newTxtDefinition = Object.assign(this.state.txtDefinition)
+    let defAsArray = newTxtDefinition.split("\n")
+
+    defAsArray.push("Scenario: \n")
     newTxtDefinition = defAsArray.join("\n")
 
     this.setState({

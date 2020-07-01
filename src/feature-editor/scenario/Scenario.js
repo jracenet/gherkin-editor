@@ -50,6 +50,15 @@ export default class Scenario extends React.Component {
     const scenarioLength = this.props.scenario.steps.length,
           lastStep = this.props.scenario.steps[scenarioLength - 1]
 
-    this.props.addNewStepLine(lastStep.location)
+    let newStepLocation = null
+
+    if (!lastStep) {
+      const scenarioLocation = this.props.scenario.location
+      newStepLocation = { line: scenarioLocation.line, column: scenarioLocation.column + 2 }
+    } else {
+      newStepLocation = lastStep.location
+    }
+
+    this.props.addNewStepLine(newStepLocation)
   }
 }
