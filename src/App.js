@@ -9,13 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     const featureTxt = [
-      "Feature: Shout thing",
-      "",
-      "Scenario: my scenario",
-      "  Given a \"context\"",
-      "  When I do things",
-      "  Then I should see some benefits",
-      "",
+      "Feature:",
     ].join("\n")
 
     const featureAst = this.computeAst(featureTxt)
@@ -73,7 +67,7 @@ class App extends React.Component {
     let newTxtDefinition = Object.assign(this.state.txtDefinition)
     let defAsArray = newTxtDefinition.split("\n")
 
-    defAsArray.push("Scenario: \n")
+    defAsArray.push("  Scenario: \n")
     newTxtDefinition = defAsArray.join("\n")
 
     this.setState({
