@@ -1,5 +1,5 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+import './App.scss'
 import FeatureEditor from './FeatureEditor'
 import FeatureRenderer from './FeatureRenderer'
 import Gherkin from 'gherkin'
@@ -26,7 +26,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="l-app">
         <FeatureEditor ast={this.state.ast} onAstUpdated={this.onAstUpdated} addNewStepLine={this.onAddNewStepLine} addNewScenario={this.onAddNewScenario}/>
         <FeatureRenderer txtDefinition={this.state.txtDefinition}/>
       </div>

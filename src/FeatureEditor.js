@@ -14,8 +14,8 @@ export default class FeatureEditor extends React.Component {
       <Scenario scenario={sc} index={index} updateFeatureChild={this.onUpdateFeatureChild} addNewStepLine={this.props.addNewStepLine}/>
     )
     return (
-      <div>
-        <Title title={this.featureName()} updateFeatureName={this.onUpdateFeatureName}/>
+      <div className="visual-editor">
+        <Title keyword={this.props.ast.feature.keyword} title={this.featureName()} updateFeatureName={this.onUpdateFeatureName}/>
         <ul>
           {scenarioList}
           <button onClick={this.props.addNewScenario}>+ Add scenario</button>

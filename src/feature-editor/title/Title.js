@@ -10,7 +10,7 @@ export default class Title extends React.Component {
   render() {
     return (
       <h1>
-        Feature: <input defaultValue={this.props.title} onBlur={this.handleUpdateFeatureName}/>
+        {this.props.keyword}: <input defaultValue={this.props.title} onBlur={this.handleUpdateFeatureName}/>
       </h1>
     )
   }
