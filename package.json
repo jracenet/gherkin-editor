@@ -4,10 +4,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@cucumber/gherkin": "^14.0.2",
+    "@cucumber/gherkin-utils": "^1.0.1",
+    "@cucumber/messages": "^12.2.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "gherkin": "5.1.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",

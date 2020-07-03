@@ -11,7 +11,7 @@ export default class FeatureEditor extends React.Component {
 
   render() {
     const scenarioList = this.featureScenarios().map((sc, index) =>
-      <Scenario scenario={sc} index={index} updateFeatureChild={this.onUpdateFeatureChild} addNewStepLine={this.props.addNewStepLine}/>
+      <Scenario scenario={sc.scenario} index={index} updateFeatureChild={this.onUpdateFeatureChild}/>
     )
     return (
       <div className="visual-editor">
@@ -41,7 +41,7 @@ export default class FeatureEditor extends React.Component {
 
   updateFeatureChild(childAst, index) {
     let updatedAst = Object.assign(this.props.ast)
-    updatedAst.feature.children[index] = childAst
+    updatedAst.feature.children[index] = {scenario: childAst}
 
     this.props.onAstUpdated(updatedAst)
   }

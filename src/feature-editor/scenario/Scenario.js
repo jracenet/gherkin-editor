@@ -1,6 +1,6 @@
 import React from 'react'
 import ScenarioStep from './steps/Step'
-
+import { IdGenerator } from '@cucumber/messages'
 export default class Scenario extends React.Component {
   constructor(props) {
     super(props)
@@ -28,6 +28,7 @@ export default class Scenario extends React.Component {
   }
 
   scenarioSteps() {
+    console.log(this.props.scenario.steps)
     return this.props.scenario.steps.map((step, index) =>
       <ScenarioStep step={step} index={index} onEditStep={this.onEditStep}/>
     )
@@ -45,7 +46,7 @@ export default class Scenario extends React.Component {
     this.props.updateFeatureChild(newScenarioAst, this.props.index)
   }
 
-  addStep() {
+  _addStep() {
     let newScenarioAst = Object.assign(this.props.scenario)
     const scenarioLength = this.props.scenario.steps.length,
           lastStep = this.props.scenario.steps[scenarioLength - 1]
@@ -60,5 +61,19 @@ export default class Scenario extends React.Component {
     }
 
     this.props.addNewStepLine(newStepLocation)
+  }
+
+  addStep() {
+    let newStepAst = {
+      id: IdGenerator.uuid(),
+      keyword: "* ",
+      location: {line: null, column: null},
+      text: "",
+      argument: undefined,
+    }
+
+    let newScenarioAst = Object.assign(this.props.scenario)
+    newScenarioAst.steps.push(newStepAst)
+    this.props.updateFeatureChild(newScenarioAst, this.props.index)
   }
 }
