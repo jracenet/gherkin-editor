@@ -1,5 +1,4 @@
 import React from 'react';
-import Gherkin from 'gherkin'
 
 export default class Title extends React.Component {
   constructor(props) {

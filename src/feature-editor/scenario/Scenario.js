@@ -1,6 +1,7 @@
 import React from 'react'
 import ScenarioStep from './steps/Step'
 import { IdGenerator } from '@cucumber/messages'
+
 export default class Scenario extends React.Component {
   constructor(props) {
     super(props)
@@ -28,7 +29,6 @@ export default class Scenario extends React.Component {
   }
 
   scenarioSteps() {
-    console.log(this.props.scenario.steps)
     return this.props.scenario.steps.map((step, index) =>
       <ScenarioStep step={step} index={index} onEditStep={this.onEditStep}/>
     )

@@ -11,9 +11,8 @@ class App extends React.Component {
     super(props)
     const featureTxt = [
       "Feature:",
-      "",
-      "  Scenario:",
-      "    Given something"
+      "Scenario:",
+      "Scenario Outline:"
     ].join("\n")
 
     const featureAst = this.computeAst(featureTxt)
@@ -24,7 +23,6 @@ class App extends React.Component {
     }
 
     this.onAstUpdated = this.updateAst.bind(this)
-    this.onAddNewScenario = this.addNewScenario.bind(this)
   }
 
   render() {
@@ -50,19 +48,6 @@ class App extends React.Component {
 
     this.setState({
       ast: newAst,
-      txtDefinition: newTxtDefinition
-    })
-  }
-
-  addNewScenario() {
-    let newTxtDefinition = Object.assign(this.state.txtDefinition)
-    let defAsArray = newTxtDefinition.split("\n")
-
-    defAsArray.push("  Scenario: \n")
-    newTxtDefinition = defAsArray.join("\n")
-
-    this.setState({
-      ast: this.computeAst(newTxtDefinition),
       txtDefinition: newTxtDefinition
     })
   }
