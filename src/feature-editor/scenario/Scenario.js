@@ -12,7 +12,7 @@ export default class Scenario extends React.Component {
 
   render() {
     return (
-      <li>
+      <li class="tile">
         {this.scenarioHeader()}
         <ul>
           {this.scenarioSteps()}
@@ -23,8 +23,9 @@ export default class Scenario extends React.Component {
   }
 
   scenarioHeader() {
-    return <h2>
-      {this.props.scenario.keyword}: <input defaultValue={this.props.scenario.name} onBlur={this.onEditScenarioName}/>
+    return <h2 class="editable-title">
+      <span class="gherkin-keyword">{this.props.scenario.keyword}:</span>
+      <input placeholder="Empty name" defaultValue={this.props.scenario.name} onBlur={this.onEditScenarioName}/>
     </h2>
   }
 

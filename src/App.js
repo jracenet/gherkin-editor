@@ -1,5 +1,5 @@
 import React from 'react'
-import './App.scss'
+import './App.sass'
 import FeatureEditor from './FeatureEditor'
 import FeatureRenderer from './FeatureRenderer'
 import { IdGenerator } from '@cucumber/messages'

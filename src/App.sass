@@ -1,0 +1,32 @@
+@import "Reset"
+@import "./design-system/Colors"
+@import "./design-system/Typography"
+@import "./design-system/Buttons"
+@import "./design-system/Input"
+@import "./design-system/Title"
+@import "./design-system/Tile"
+
+body
+  background-color: $grey-bg
+  margin: 0
+  padding: 20px
+
+h1, h2
+  @include title
+  margin: 0
+
+h1
+  font-size: 24px
+  margin-top: 15px
+  padding-bottom: 15px
+
+h2
+  font-size: 18px
+  margin-top: 5px
+  padding-bottom: 15px
+
+.l-app
+  background: $white
+  padding: 25px
+  width: 75%
+  margin: 0 auto
