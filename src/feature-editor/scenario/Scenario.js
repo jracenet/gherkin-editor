@@ -31,7 +31,7 @@ export default class Scenario extends React.Component {
 
   scenarioSteps() {
     return this.props.scenario.steps.map((step, index) =>
-      <ScenarioStep step={step} index={index} onEditStep={this.onEditStep}/>
+      <ScenarioStep step={step} index={index} onEditStep={this.onEditStep} onAddStep={this.addStep}/>
     )
   }
 
@@ -47,26 +47,10 @@ export default class Scenario extends React.Component {
     this.props.updateFeatureChild(newScenarioAst, this.props.index)
   }
 
-  _addStep() {
-    let newScenarioAst = Object.assign(this.props.scenario)
-    const scenarioLength = this.props.scenario.steps.length,
-          lastStep = this.props.scenario.steps[scenarioLength - 1]
-
-    let newStepLocation = null
-
-    if (!lastStep) {
-      const scenarioLocation = this.props.scenario.location
-      newStepLocation = { line: scenarioLocation.line, column: scenarioLocation.column + 2 }
-    } else {
-      newStepLocation = lastStep.location
-    }
-
-    this.props.addNewStepLine(newStepLocation)
-  }
-
-  addStep() {
+  addStep(index) {
+    const uid = IdGenerator.uuid()
     let newStepAst = {
-      id: IdGenerator.uuid(),
+      id: uid,
       keyword: "* ",
       location: {line: null, column: null},
       text: "",
@@ -74,7 +58,17 @@ export default class Scenario extends React.Component {
     }
 
     let newScenarioAst = Object.assign(this.props.scenario)
-    newScenarioAst.steps.push(newStepAst)
+
+
+    if (index === parseInt(index, 10)) {
+      newScenarioAst.steps.splice(index + 1, 0, newStepAst)
+    } else {
+      newScenarioAst.steps.push(newStepAst)
+    }
+
+
     this.props.updateFeatureChild(newScenarioAst, this.props.index)
+
+    return uid
   }
 }
