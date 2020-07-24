@@ -29,20 +29,17 @@ export default class Annotation extends React.Component {
 
   render() {
     return (
-      <span>
-        <input type="text" value={this.state.value}
-        name="annotation"
-        list="annotations" onChange={e => this.setState({ value: e.target.value })} onBlur={this.handleChange}/>
-
-        <datalist id="annotations">
-          <select>
-            <option value="Given"/>
-            <option value="When"/>
-            <option value="And"/>
-            <option value="Then"/>
-          </select>
-        </datalist>
-      </span>
+    <select class="gherkin-keyword"
+            name="annotation"
+            value={this.state.value}
+            onChange={this.handleChange}>
+      <option value="*">*</option>
+      <option value="Given">Given</option>
+      <option value="When">When</option>
+      <option value="And">And</option>
+      <option value="Then">Then</option>
+      <option value="But">But</option>
+    </select>
     )
   }
 }

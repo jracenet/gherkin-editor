@@ -8,9 +8,9 @@ export default class Text extends React.Component {
   }
 
   render() {
-    return (<span>
+    return (<>
       <input type="text" defaultValue={this.props.text.trim()} name="text" onBlur={this.handleChange}/>
-    </span>)
+    </>)
   }
 
   handleChange(e) {

@@ -12,7 +12,7 @@ export default class Step extends React.Component {
 
   render() {
     return (
-      <li>
+      <li class="step">
           <Annotation annotation={this.props.step.keyword} onAnnotationChange={this.onAnnotationChange} />
           <Text text={this.props.step.text} onTextChange={this.onTextChange}/>
       </li>
