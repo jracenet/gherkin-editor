@@ -1,11 +1,22 @@
 @import "Colors"
 @import "Typography"
 
-button
+%btn
+  border-radius: 5px
+
+.btn--main
   @include form-components
+  @extend %btn
   padding: 10px
   margin: 5px
-  border-radius: 5px
   color: $white
   background-color: $cucumber-green
   border: solid 1px $cucumber-green
+
+.btn--secondary
+  @include form-components
+  @extend %btn
+  border: solid 1px $grey-border
+  color: $dark-blue
+  margin-top: 5px
+  padding: 5px 10px

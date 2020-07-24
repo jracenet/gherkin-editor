@@ -15,8 +15,8 @@ export default class FeatureEditor extends React.Component {
     const scenarioList = this.featureScenarios().map((sc, index) =>
       <>
         <Scenario scenario={sc.scenario} index={index} updateFeatureChild={this.onUpdateFeatureChild}/>
-        <button onClick={() => this.onAddNewScenario(index, false)}>+ Add scenario</button>
-        <button onClick={() => this.onAddNewScenario(index, true)}>+ Add scenario outline</button>
+        <button class="btn--main" onClick={() => this.onAddNewScenario(index, false)}>Add scenario</button>
+        <button class="btn--main" onClick={() => this.onAddNewScenario(index, true)}>Add scenario outline</button>
       </>
     )
 

@@ -16,7 +16,7 @@ export default class Scenario extends React.Component {
         {this.scenarioHeader()}
         <ul>
           {this.scenarioSteps()}
-          <button onClick={this.addStep}>+ Add step</button>
+          <button class="btn--secondary" onClick={this.addStep}>Add step</button>
         </ul>
       </li>
     )

@@ -12,7 +12,6 @@ class App extends React.Component {
     const featureTxt = [
       "Feature:",
       "Scenario:",
-      "Scenario Outline:"
     ].join("\n")
 
     const featureAst = this.computeAst(featureTxt)
