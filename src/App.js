@@ -12,8 +12,10 @@ class App extends React.Component {
     const featureTxt = [
       "Feature:",
       "",
-      "  Scenario:",
-      "    Given I do something"
+      "  Scenario: A simple Gherkin example",
+      "    Given some context",
+      "    When I perform an action",
+      "    Then I should observe an expected outcome"
     ].join("\n")
 
     const featureAst = this.computeAst(featureTxt)
