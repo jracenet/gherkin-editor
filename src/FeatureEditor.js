@@ -16,7 +16,7 @@ export default class FeatureEditor extends React.Component {
     const scenarioList = this.featureScenarios().map((sc, index) =>
       <>
         <Scenario key={sc.scenario.id} scenario={sc.scenario} index={index} updateFeatureChild={this.onUpdateFeatureChild} onDeleteScenario={this.deleteScenario}/>
-        <button class="btn--main" onClick={() => this.onAddNewScenario(index, false)}>Add scenario</button>
+        <button class="tiles-list__gutter-action btn--main" onClick={() => this.onAddNewScenario(index, false)}>+</button>
         {/* <button class="btn--main" onClick={() => this.onAddNewScenario(index, true)}>Add scenario outline</button> */}
       </>
     )
@@ -25,6 +25,7 @@ export default class FeatureEditor extends React.Component {
       <div className="visual-editor">
         <Title keyword={this.props.ast.feature.keyword} title={this.featureName()} updateFeatureName={this.onUpdateFeatureName}/>
         <ul class="tiles-list">
+          <button class="tiles-list__gutter-action btn--main" onClick={() => this.onAddNewScenario(":first", false)}>+</button>
           {scenarioList}
         </ul>
         {scenarioList.length === 0 &&
@@ -69,7 +70,8 @@ export default class FeatureEditor extends React.Component {
       tags: []
     }
 
-    updatedAst.feature.children.splice(index + 1, 0, { scenario: newScenarioAst })
+    const actualIndex = (index === ":first")? 0 : index + 1
+    updatedAst.feature.children.splice(actualIndex, 0, { scenario: newScenarioAst })
 
     this.props.onAstUpdated(updatedAst)
   }

@@ -1,13 +1,39 @@
 @import "./design-system/Medias"
+@import "./design-system/Colors"
 
 .tiles-list
+  @include lg
+    border-left: solid 1px $cucumber-green-pale
+    margin-left: -10px
+    padding-left: 10px
+  & > .tiles-list__gutter-action
+    width: 20px
+    height: 20px
+    border-radius: 50%
+    padding: 0
+    line-height: 100%
+    font-size: 100%
+    line-height: 100%
+    @include sm
+      display: block
+      margin: 5px auto
+      font-size: 100%
+      line-height: 100%
+    @include lg
+      display: inline-block
+      margin-top: 0
+      margin-bottom: 0
+      margin-left: -21px
+      color: $cucumber-green-pale
+      background-color: $grey-bg
+
   @include sm
     padding: 0 5px
 
 .tile
   padding: 20px
-  margin-top: 15px
-  margin-bottom: 15px
+  margin-top: 5px
+  margin-bottom: 5px
   background-color: $white
   border-radius: 5px
   border: solid 1px lighten($grey-border, 15%)
