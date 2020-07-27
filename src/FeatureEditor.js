@@ -13,24 +13,30 @@ export default class FeatureEditor extends React.Component {
   }
 
   render() {
-    const scenarioList = this.featureScenarios().map((sc, index) =>
-      <>
-        <Scenario key={sc.scenario.id} scenario={sc.scenario} index={index} updateFeatureChild={this.onUpdateFeatureChild} onDeleteScenario={this.deleteScenario}/>
-        <button class="tiles-list__gutter-action btn--main" onClick={() => this.onAddNewScenario(index, false)}>+</button>
-        {/* <button class="btn--main" onClick={() => this.onAddNewScenario(index, true)}>Add scenario outline</button> */}
+    let scenarioList = null
+
+    if (this.featureScenarios().length > 0) {
+      const scenarioComponents = this.featureScenarios().map((sc, index) =>
+        <>
+          <Scenario key={sc.scenario.id} scenario={sc.scenario} index={index} updateFeatureChild={this.onUpdateFeatureChild} onDeleteScenario={this.deleteScenario}/>
+          <button class="tiles-list__gutter-action btn--main" onClick={() => this.onAddNewScenario(index, false)}>+</button>
+        </>
+      )
+      scenarioList =
+        <ul class="tiles-list">
+          <button class="tiles-list__gutter-action btn--main" onClick={() => this.onAddNewScenario(":first", false)}>+</button>
+          {scenarioComponents}
+        </ul>
+    } else {
+      scenarioList = <>
+        <button class="btn--main" onClick={() => this.onAddNewScenario(0, false)}>Add a first scenario</button>
       </>
-    )
+    }
 
     return (
       <div className="visual-editor">
         <Title keyword={this.props.ast.feature.keyword} title={this.featureName()} updateFeatureName={this.onUpdateFeatureName}/>
-        <ul class="tiles-list">
-          <button class="tiles-list__gutter-action btn--main" onClick={() => this.onAddNewScenario(":first", false)}>+</button>
-          {scenarioList}
-        </ul>
-        {scenarioList.length === 0 &&
-          <button class="btn--main" onClick={() => this.onAddNewScenario(0, false)}>Add a first scenario</button>
-        }
+        {scenarioList}
       </div>
     )
   }
