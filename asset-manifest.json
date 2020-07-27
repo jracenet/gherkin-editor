@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/gherkin-editor/static/css/main.c4f1706a.chunk.css",
-    "main.js": "/gherkin-editor/static/js/main.cffed854.chunk.js",
-    "main.js.map": "/gherkin-editor/static/js/main.cffed854.chunk.js.map",
+    "main.css": "/gherkin-editor/static/css/main.7683acc1.chunk.css",
+    "main.js": "/gherkin-editor/static/js/main.8c40cdf7.chunk.js",
+    "main.js.map": "/gherkin-editor/static/js/main.8c40cdf7.chunk.js.map",
     "runtime-main.js": "/gherkin-editor/static/js/runtime-main.6b6abc6b.js",
     "runtime-main.js.map": "/gherkin-editor/static/js/runtime-main.6b6abc6b.js.map",
     "static/js/2.1102367f.chunk.js": "/gherkin-editor/static/js/2.1102367f.chunk.js",
     "static/js/2.1102367f.chunk.js.map": "/gherkin-editor/static/js/2.1102367f.chunk.js.map",
     "index.html": "/gherkin-editor/index.html",
-    "precache-manifest.6e08831dda4e10dbd530599220bc113c.js": "/gherkin-editor/precache-manifest.6e08831dda4e10dbd530599220bc113c.js",
+    "precache-manifest.ce9eadd2574e18a015d1c348e410309c.js": "/gherkin-editor/precache-manifest.ce9eadd2574e18a015d1c348e410309c.js",
     "service-worker.js": "/gherkin-editor/service-worker.js",
-    "static/css/main.c4f1706a.chunk.css.map": "/gherkin-editor/static/css/main.c4f1706a.chunk.css.map",
+    "static/css/main.7683acc1.chunk.css.map": "/gherkin-editor/static/css/main.7683acc1.chunk.css.map",
     "static/js/2.1102367f.chunk.js.LICENSE.txt": "/gherkin-editor/static/js/2.1102367f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.6b6abc6b.js",
     "static/js/2.1102367f.chunk.js",
-    "static/css/main.c4f1706a.chunk.css",
-    "static/js/main.cffed854.chunk.js"
+    "static/css/main.7683acc1.chunk.css",
+    "static/js/main.8c40cdf7.chunk.js"
   ]
 }
