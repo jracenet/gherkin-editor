@@ -27,6 +27,7 @@ export default class Scenario extends React.Component {
     return <h2 class="editable-title">
       <span class="gherkin-keyword">{this.props.scenario.keyword}:</span>
       <input placeholder="Empty name" defaultValue={this.props.scenario.name} onBlur={this.onEditScenarioName}/>
+      <button class="btn--secondary" onClick={() => this.props.onDeleteScenario(this.props.index)}>Delete</button>
     </h2>
   }
 

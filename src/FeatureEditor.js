@@ -9,12 +9,13 @@ export default class FeatureEditor extends React.Component {
     this.onUpdateFeatureName = this.updateFeatureName.bind(this)
     this.onUpdateFeatureChild = this.updateFeatureChild.bind(this)
     this.onAddNewScenario = this.createNewScenario.bind(this)
+    this.deleteScenario = this.deleteScenario.bind(this)
   }
 
   render() {
     const scenarioList = this.featureScenarios().map((sc, index) =>
       <>
-        <Scenario key={sc.scenario.id} scenario={sc.scenario} index={index} updateFeatureChild={this.onUpdateFeatureChild}/>
+        <Scenario key={sc.scenario.id} scenario={sc.scenario} index={index} updateFeatureChild={this.onUpdateFeatureChild} onDeleteScenario={this.deleteScenario}/>
         <button class="btn--main" onClick={() => this.onAddNewScenario(index, false)}>Add scenario</button>
         {/* <button class="btn--main" onClick={() => this.onAddNewScenario(index, true)}>Add scenario outline</button> */}
       </>
@@ -26,6 +27,9 @@ export default class FeatureEditor extends React.Component {
         <ul>
           {scenarioList}
         </ul>
+        {scenarioList.length === 0 &&
+          <button class="btn--main" onClick={() => this.onAddNewScenario(0, false)}>Add a first scenario</button>
+        }
       </div>
     )
   }
@@ -67,6 +71,12 @@ export default class FeatureEditor extends React.Component {
 
     updatedAst.feature.children.splice(index + 1, 0, { scenario: newScenarioAst })
 
+    this.props.onAstUpdated(updatedAst)
+  }
+
+  deleteScenario(index) {
+    let updatedAst = Object.assign(this.props.ast)
+    updatedAst.feature.children.splice(index, 1)
     this.props.onAstUpdated(updatedAst)
   }
 }
