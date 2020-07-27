@@ -1,5 +1,6 @@
 import React from 'react';
 import Title from './feature-editor/title/Title'
+import Description from './feature-editor/description/Description'
 import Scenario from './feature-editor/scenario/Scenario'
 import { IdGenerator } from '@cucumber/messages'
 
@@ -7,6 +8,7 @@ export default class FeatureEditor extends React.Component {
   constructor(props) {
     super(props)
     this.onUpdateFeatureName = this.updateFeatureName.bind(this)
+    this.onUpdateFeatureDescription = this.updateFeatureDescription.bind(this)
     this.onUpdateFeatureChild = this.updateFeatureChild.bind(this)
     this.onAddNewScenario = this.createNewScenario.bind(this)
     this.deleteScenario = this.deleteScenario.bind(this)
@@ -36,6 +38,7 @@ export default class FeatureEditor extends React.Component {
     return (
       <div className="visual-editor">
         <Title keyword={this.props.ast.feature.keyword} title={this.featureName()} updateFeatureName={this.onUpdateFeatureName}/>
+        <Description description={this.featureDescription()} updateDescription={this.onUpdateFeatureDescription} />
         {scenarioList}
       </div>
     )
@@ -45,6 +48,10 @@ export default class FeatureEditor extends React.Component {
     return this.props.ast.feature.name
   }
 
+  featureDescription() {
+    return this.props.ast.feature.description
+  }
+
   featureScenarios() {
     return this.props.ast.feature.children
   }
@@ -52,6 +59,13 @@ export default class FeatureEditor extends React.Component {
   updateFeatureName(newName) {
     let updatedAst = Object.assign(this.props.ast)
     updatedAst.feature.name = newName
+
+    this.props.onAstUpdated(updatedAst)
+  }
+
+  updateFeatureDescription(newDescription) {
+    let updatedAst = Object.assign(this.props.ast)
+    updatedAst.feature.description = newDescription
 
     this.props.onAstUpdated(updatedAst)
   }

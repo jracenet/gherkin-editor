@@ -11,7 +11,7 @@ class App extends React.Component {
     super(props)
     const featureTxt = [
       "Feature:",
-      "",
+      "You can add a description to the feature",
       "  Scenario: A simple Gherkin example",
       "    Given some context",
       "    When I perform an action",
