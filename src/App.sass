@@ -6,29 +6,43 @@
 @import "./design-system/Title"
 @import "./design-system/Tile"
 @import "./design-system/Steps"
+@import "./design-system/Medias"
 
 body
   background-color: $grey-bg
   margin: 0
   padding: 20px
+  @include sm
+    padding: 0
 
 h1, h2
   @include title
   margin: 0
 
 h1
-  font-size: 28px
+  font-size: 3vh
   margin-top: 15px
   padding-bottom: 15px
+  @include sm
+    padding-bottom: 5px
 
 h2
-  font-size: 18px
+  font-size: 2vh
   margin-top: 5px
   padding-bottom: 15px
+  @include sm
+    margin-top: 5px
+    padding-bottom: 5px
 
 .l-app
   width: 75%
   margin: 0 auto
+  @include sm
+    width: 100%
+    max-width: 100%
+    margin: 0
+    & > .visual-editor > h1
+      padding: 5px
 
 .text-renderer
   margin-top: 50px

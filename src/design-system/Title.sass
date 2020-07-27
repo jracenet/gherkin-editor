@@ -1,10 +1,14 @@
 .editable-title
   display: flex
   align-items: baseline
+  margin: 0 -5px
+  & > .gherkin-keyword
+    margin: 0 5px
   & > input
     @extend .input--title
-    margin-left: 5px
+    margin: 0 5px
     flex-grow: 1
     background-color: transparent
   & > button
-    margin-left: 20px
+    justify-self: flex-end
+    margin: 0 5px

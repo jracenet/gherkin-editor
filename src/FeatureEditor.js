@@ -24,7 +24,7 @@ export default class FeatureEditor extends React.Component {
     return (
       <div className="visual-editor">
         <Title keyword={this.props.ast.feature.keyword} title={this.featureName()} updateFeatureName={this.onUpdateFeatureName}/>
-        <ul>
+        <ul class="tiles-list">
           {scenarioList}
         </ul>
         {scenarioList.length === 0 &&

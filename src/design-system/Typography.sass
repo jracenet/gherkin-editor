@@ -1,7 +1,11 @@
+@import "./design-system/Medias"
+
 @mixin form-components
   font-family: 'Open Sans'
   font-size: 12px
   font-weight: 400
+  @include sm
+    font-size: 1.5vh
 
 @mixin title
   font-family: 'Open Sans'
