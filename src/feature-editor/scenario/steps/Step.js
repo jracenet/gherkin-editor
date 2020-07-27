@@ -1,6 +1,7 @@
 import React from 'react'
 import Annotation from './Annotation'
 import Text from './Text'
+import GherkinAstMutator from 'lib/GherkinAstMutator'
 
 export default class Step extends React.Component {
   constructor(props) {
@@ -19,22 +20,18 @@ export default class Step extends React.Component {
     )
   }
 
-  editStepAnnotation(annotation) {
-    const newStepAst = Object.assign(this.props.step)
-    newStepAst.keyword = annotation + ' '
+  editStepAnnotation(keyword) {
+    const newStepAst = GherkinAstMutator.updateStep(this.props.step, keyword, null, this.props.index)
     this.props.onEditStep(newStepAst, this.props.index)
   }
 
   editStepText(text) {
-    const newStepAst = Object.assign(this.props.step)
-    newStepAst.text = text
+    const newStepAst = GherkinAstMutator.updateStep(this.props.step, null, text, this.props.index)
     this.props.onEditStep(newStepAst, this.props.index)
   }
 
   updateStepAndCreateOne(text) {
-    const index = this.props.index
-
-    this.editStepText(text)
-    this.props.onAddStep(this.props.index)
+    const updatedStepAst = GherkinAstMutator.updateStep(this.props.step, null, text, this.props.index)
+    this.props.onEditAndAddStep(updatedStepAst, this.props.index)
   }
 }

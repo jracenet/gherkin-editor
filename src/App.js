@@ -11,7 +11,9 @@ class App extends React.Component {
     super(props)
     const featureTxt = [
       "Feature:",
-      "Scenario:",
+      "",
+      "  Scenario:",
+      "    Given I do something"
     ].join("\n")
 
     const featureAst = this.computeAst(featureTxt)

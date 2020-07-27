@@ -1,6 +1,6 @@
 import React from 'react'
 import ScenarioStep from './steps/Step'
-import { IdGenerator } from '@cucumber/messages'
+import GherkinAstMutator from 'lib/GherkinAstMutator'
 
 export default class Scenario extends React.Component {
   constructor(props) {
@@ -8,6 +8,7 @@ export default class Scenario extends React.Component {
     this.onEditScenarioName = this.editScenarioName.bind(this)
     this.onEditStep = this.editStep.bind(this)
     this.addStep = this.addStep.bind(this)
+    this.onEditAndAddStep = this.editAndAddStep.bind(this)
   }
 
   render() {
@@ -31,7 +32,7 @@ export default class Scenario extends React.Component {
 
   scenarioSteps() {
     return this.props.scenario.steps.map((step, index) =>
-      <ScenarioStep step={step} index={index} onEditStep={this.onEditStep} onAddStep={this.addStep}/>
+      <ScenarioStep key={step.id} step={step} index={index} onEditStep={this.onEditStep} onAddStep={this.addStep} onEditAndAddStep={this.onEditAndAddStep}/>
     )
   }
 
@@ -48,27 +49,20 @@ export default class Scenario extends React.Component {
   }
 
   addStep(index) {
-    const uid = IdGenerator.uuid()
-    let newStepAst = {
-      id: uid,
-      keyword: "* ",
-      location: {line: null, column: null},
-      text: "",
-      argument: undefined,
-    }
-
-    let newScenarioAst = Object.assign(this.props.scenario)
-
-
-    if (index === parseInt(index, 10)) {
-      newScenarioAst.steps.splice(index + 1, 0, newStepAst)
-    } else {
-      newScenarioAst.steps.push(newStepAst)
-    }
-
+    let newScenarioAst = GherkinAstMutator.addStepAt(this.props.scenario, index)
 
     this.props.updateFeatureChild(newScenarioAst, this.props.index)
 
-    return uid
+    return newScenarioAst
+  }
+
+  editAndAddStep(newStepAst, index) {
+    let newScenarioAst = Object.assign(this.props.scenario)
+    newScenarioAst.steps[index] = newStepAst
+    newScenarioAst = GherkinAstMutator.addStepAt(newScenarioAst, index)
+
+    this.props.updateFeatureChild(newScenarioAst, this.props.index)
+
+    return newScenarioAst
   }
 }
