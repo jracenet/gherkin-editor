@@ -1,9 +1,7 @@
 import React from 'react'
 
-export default class FeatureRenderer extends React.Component {
-  render() {
-    return <div className="text-renderer">
-      <textarea id="gherkin-render" value={this.props.txtDefinition} rows="20" readonly="true"/>
-    </div>
-  }
+export default function(props) {
+  return <div className="text-renderer">
+    <textarea id="gherkin-render" value={props.txtDefinition} rows="20" readonly="true"/>
+  </div>
 }
