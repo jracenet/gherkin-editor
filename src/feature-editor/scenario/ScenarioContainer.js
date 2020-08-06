@@ -6,20 +6,20 @@ export default function(props) {
   const scenarioIndex = props.index
   let mutableScenarioAST = { ...props.scenario }
 
-  const scenarioHeaderActions = {
+  const scenarioActions = {
     editScenarioName(newName) {
       mutableScenarioAST.name = newName
+      return props.updateFeatureChild(mutableScenarioAST, scenarioIndex)
+    },
+
+    editScenarioDescription(newDescription) {
+      mutableScenarioAST.description = newDescription
       return props.updateFeatureChild(mutableScenarioAST, scenarioIndex)
     },
 
     onDeleteScenario() {
       return props.onDeleteScenario(scenarioIndex)
     }
-  }
-
-  function updateScenarioDescription(newDescription) {
-    mutableScenarioAST.description = newDescription
-    return props.updateFeatureChild(mutableScenarioAST, scenarioIndex)
   }
 
   const scenarioStepsActions = {
@@ -53,9 +53,8 @@ export default function(props) {
       keyword={ mutableScenarioAST.keyword }
       name={ mutableScenarioAST.name }
       description={ mutableScenarioAST.description }
-      updateScenarioDescription = { updateScenarioDescription }
       steps = { mutableScenarioAST.steps }
-      scenarioHeaderActions={ scenarioHeaderActions }
+      scenarioActions={ scenarioActions }
       scenarioStepsActions={ scenarioStepsActions }
     />
   </>

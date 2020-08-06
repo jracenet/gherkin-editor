@@ -4,15 +4,17 @@ import Description from '../commons/Description'
 import ScenarioStepsRender from './ScenarioStepsRender'
 
 export default function(props) {
+  const scenarioActions = props.scenarioActions
+
   return <li className="tile">
     <ScenarioHeaderRender
       index={ props.index }
       keyword={ props.keyword }
       name={ props.name }
-      actions={ props.scenarioHeaderActions }
+      actions={ props.scenarioActions }
     />
 
-    <Description description={ props.description } updateDescription={ props.updateScenarioDescription } />
+    <Description description={ props.description } updateDescription={ scenarioActions.editScenarioDescription } />
     <ScenarioStepsRender steps={ props.steps } actions={ props.scenarioStepsActions }/>
   </li>
 }
