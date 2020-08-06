@@ -1,7 +1,7 @@
 import React from 'react'
-import EditableTitle from './feature-editor/commons/EditableTitle'
-import Description from './feature-editor/commons/Description'
-import ScenarioContainer from './feature-editor/scenario/ScenarioContainer'
+import EditableTitle from './commons/EditableTitle'
+import Description from './commons/Description'
+import ScenarioContainer from './scenario/ScenarioContainer'
 
 export default function(props) {
   let scenariosList = null,
@@ -11,7 +11,6 @@ export default function(props) {
     const scenarioComponents = props.featureChildren.map((sc, index) =>
       <>
         <ScenarioContainer
-          key={ sc.scenario.id }
           scenario={ sc.scenario }
           index={ index }
           updateFeatureChild={ scenarioActions.updateFeatureChild }

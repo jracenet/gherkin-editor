@@ -24,6 +24,7 @@ export default function(props) {
     <StepRender index={ props.index }
                 keyword={ props.step.keyword }
                 text={ props.step.text }
+                datatable={ props.step.dataTable }
                 stepEditionMethods={ stepEditionMethods }/>
   </>
 }

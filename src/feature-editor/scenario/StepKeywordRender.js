@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function(props) {
-  return <select class="gherkin-keyword"
+  return <select className="gherkin-keyword"
           name="annotation"
           value={ props.keyword }
           onChange={(e) => { props.onAnnotationChange(e.target.value) }}>

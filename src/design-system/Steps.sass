@@ -4,21 +4,26 @@
   padding-left: 15px
   & > .step
     display: flex
+    flex-direction: column
     margin: 5px 0
 
-    & > select, & input
-      font-size: 14px
-      @include sm
-        font-size: 2vh
+    & > .step-basic-data
+      & > select, & input
+        font-size: 14px
+        @include sm
+          font-size: 2vh
 
-    & select
-      border: none
-      background-color: transparent
-      border-bottom: dashed 1px $cucumber-green
-      margin-right: 5px
-      cursor: pointer
-      &:focus
-        filter: brightness(50%)
-    & input
-      flex-grow: 1
-      @extend .input--title
+      & select
+        border: none
+        background-color: transparent
+        border-bottom: dashed 1px $cucumber-green
+        margin-right: 5px
+        cursor: pointer
+        &:focus
+          filter: brightness(50%)
+      & input
+        flex-grow: 1
+        @extend .input--title
+
+    & > .step-extra-data
+      padding: 10px 5px

@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.sass'
-import FeatureEditorContainer from './FeatureEditorContainer'
+import FeatureEditorContainer from './feature-editor/FeatureEditorContainer'
 import FeatureRenderer from './FeatureRenderer'
 import { IdGenerator } from '@cucumber/messages'
 import { AstBuilder, Parser } from '@cucumber/gherkin'
@@ -15,7 +15,7 @@ class App extends React.Component {
       "  Scenario: A simple Gherkin example",
       "    Given some context",
       "    When I perform an action",
-      "    Then I should observe an expected outcome"
+      "    Then I should observe something",
     ].join("\n")
 
     const featureAst = this.computeAst(featureTxt)
