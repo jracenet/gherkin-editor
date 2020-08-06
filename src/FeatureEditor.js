@@ -4,81 +4,18 @@ import Description from './feature-editor/description/Description'
 import Scenario from './feature-editor/scenario/Scenario'
 import { IdGenerator } from '@cucumber/messages'
 
-export default class FeatureEditor extends React.Component {
-  constructor(props) {
-    super(props)
-    this.onUpdateFeatureName = this.updateFeatureName.bind(this)
-    this.onUpdateFeatureDescription = this.updateFeatureDescription.bind(this)
-    this.onUpdateFeatureChild = this.updateFeatureChild.bind(this)
-    this.onAddNewScenario = this.createNewScenario.bind(this)
-    this.deleteScenario = this.deleteScenario.bind(this)
-  }
+export default function(props) {
+  let scenarioList = null
 
-  render() {
-    let scenarioList = null
-
-    if (this.featureScenarios().length > 0) {
-      const scenarioComponents = this.featureScenarios().map((sc, index) =>
-        <>
-          <Scenario key={sc.scenario.id} scenario={sc.scenario} index={index} updateFeatureChild={this.onUpdateFeatureChild} onDeleteScenario={this.deleteScenario}/>
-          <button class="tiles-list__gutter-action btn--main" onClick={() => this.onAddNewScenario(index, false)}>+</button>
-        </>
-      )
-      scenarioList =
-        <ul class="tiles-list">
-          <button class="tiles-list__gutter-action btn--main" onClick={() => this.onAddNewScenario(":first", false)}>+</button>
-          {scenarioComponents}
-        </ul>
-    } else {
-      scenarioList = <>
-        <button class="btn--main" onClick={() => this.onAddNewScenario(0, false)}>Add a first scenario</button>
-      </>
-    }
-
-    return (
-      <div className="visual-editor">
-        <Title keyword={this.props.ast.feature.keyword} title={this.featureName()} updateFeatureName={this.onUpdateFeatureName}/>
-        <Description description={this.featureDescription()} updateDescription={this.onUpdateFeatureDescription} />
-        {scenarioList}
-      </div>
-    )
-  }
-
-  featureName() {
-    return this.props.ast.feature.name
-  }
-
-  featureDescription() {
-    return this.props.ast.feature.description
-  }
-
-  featureScenarios() {
-    return this.props.ast.feature.children
-  }
-
-  updateFeatureName(newName) {
-    let updatedAst = Object.assign(this.props.ast)
-    updatedAst.feature.name = newName
-
-    this.props.onAstUpdated(updatedAst)
-  }
-
-  updateFeatureDescription(newDescription) {
-    let updatedAst = Object.assign(this.props.ast)
-    updatedAst.feature.description = newDescription
-
-    this.props.onAstUpdated(updatedAst)
-  }
-
-  updateFeatureChild(childAst, index) {
-    let updatedAst = Object.assign(this.props.ast)
+  function updateFeatureChild(childAst, index) {
+    let updatedAst = { ...props.ast }
     updatedAst.feature.children[index] = {scenario: childAst}
 
-    this.props.onAstUpdated(updatedAst)
+    props.onAstUpdated(updatedAst)
   }
 
-  createNewScenario(index, isOutline) {
-    let updatedAst = Object.assign(this.props.ast)
+  function createNewScenario(index, isOutline) {
+    let updatedAst = { ...props.ast }
 
     let newScenarioAst = {
       examples: [],
@@ -93,12 +30,50 @@ export default class FeatureEditor extends React.Component {
     const actualIndex = (index === ":first")? 0 : index + 1
     updatedAst.feature.children.splice(actualIndex, 0, { scenario: newScenarioAst })
 
-    this.props.onAstUpdated(updatedAst)
+    props.onAstUpdated(updatedAst)
   }
 
-  deleteScenario(index) {
-    let updatedAst = Object.assign(this.props.ast)
+  function deleteScenario(index) {
+    let updatedAst = { ...props.ast }
     updatedAst.feature.children.splice(index, 1)
-    this.props.onAstUpdated(updatedAst)
+    props.onAstUpdated(updatedAst)
   }
+
+  if (props.ast.feature.children.length > 0) {
+    const scenarioComponents = props.ast.feature.children.map((sc, index) =>
+      <>
+        <Scenario key={sc.scenario.id} scenario={sc.scenario} index={index} updateFeatureChild={updateFeatureChild}
+          onDeleteScenario={ deleteScenario }/>
+        <button class="tiles-list__gutter-action btn--main" onClick={() => createNewScenario(index, false)}>+</button>
+      </>
+    )
+    scenarioList =
+      <ul class="tiles-list">
+        <button class="tiles-list__gutter-action btn--main" onClick={() => createNewScenario(":first", false)}>+</button>
+        { scenarioComponents }
+      </ul>
+  } else {
+    scenarioList = <>
+      <button class="btn--main" onClick={() => createNewScenario(0, false)}>Add a first scenario</button>
+    </>
+  }
+
+  function updateFeatureName(newName) {
+    let updatedAst = { ...props.ast }
+    updatedAst.feature.name = newName
+    props.onAstUpdated(updatedAst)
+  }
+
+  function updateFeatureDescription(newDescription) {
+    let updatedAst = { ...props.ast }
+    updatedAst.feature.description = newDescription
+
+    props.onAstUpdated(updatedAst)
+  }
+
+  return <div className="visual-editor">
+        <Title keyword={props.ast.feature.keyword} title={props.ast.feature.name} updateFeatureName={ updateFeatureName }/>
+        <Description description={props.ast.feature.description} updateDescription={ updateFeatureDescription } />
+        {scenarioList}
+      </div>
 }
