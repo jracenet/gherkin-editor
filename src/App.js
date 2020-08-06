@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.sass'
-import FeatureEditor from './FeatureEditor'
+import FeatureEditorContainer from './FeatureEditorContainer'
 import FeatureRenderer from './FeatureRenderer'
 import { IdGenerator } from '@cucumber/messages'
 import { AstBuilder, Parser } from '@cucumber/gherkin'
@@ -31,7 +31,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="l-app">
-        <FeatureEditor ast={this.state.ast} onAstUpdated={this.onAstUpdated} addNewScenario={this.onAddNewScenario}/>
+        <FeatureEditorContainer ast={this.state.ast}
+          onAstUpdated={this.onAstUpdated}
+          addNewScenario={this.onAddNewScenario}
+        />
         <FeatureRenderer txtDefinition={this.state.txtDefinition}/>
       </div>
     )
