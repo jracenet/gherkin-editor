@@ -1,5 +1,6 @@
 import React from 'react'
 import ScenarioHeaderRender from './ScenarioHeaderRender'
+import Description from '../commons/Description'
 import ScenarioStepsRender from './ScenarioStepsRender'
 
 export default function(props) {
@@ -11,6 +12,7 @@ export default function(props) {
       actions={ props.scenarioHeaderActions }
     />
 
+    <Description description={ props.description } updateDescription={ props.updateScenarioDescription } />
     <ScenarioStepsRender steps={ props.steps } actions={ props.scenarioStepsActions }/>
   </li>
 }

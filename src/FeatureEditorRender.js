@@ -1,6 +1,6 @@
 import React from 'react'
 import EditableTitle from './feature-editor/commons/EditableTitle'
-import Description from './feature-editor/description/Description'
+import Description from './feature-editor/commons/Description'
 import ScenarioContainer from './feature-editor/scenario/ScenarioContainer'
 
 export default function(props) {

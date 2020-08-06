@@ -17,6 +17,11 @@ export default function(props) {
     }
   }
 
+  function updateScenarioDescription(newDescription) {
+    mutableScenarioAST.description = newDescription
+    return props.updateFeatureChild(mutableScenarioAST, scenarioIndex)
+  }
+
   const scenarioStepsActions = {
     addStep(index) {
       const newScenarioAst = GherkinAstMutator.addStepAt(mutableScenarioAST, index)
@@ -47,6 +52,8 @@ export default function(props) {
       index={ scenarioIndex }
       keyword={ mutableScenarioAST.keyword }
       name={ mutableScenarioAST.name }
+      description={ mutableScenarioAST.description }
+      updateScenarioDescription = { updateScenarioDescription }
       steps = { mutableScenarioAST.steps }
       scenarioHeaderActions={ scenarioHeaderActions }
       scenarioStepsActions={ scenarioStepsActions }
