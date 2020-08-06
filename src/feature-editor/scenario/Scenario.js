@@ -1,5 +1,5 @@
 import React from 'react'
-import ScenarioStep from './steps/Step'
+import StepContainer from './StepContainer'
 import GherkinAstMutator from 'lib/GherkinAstMutator'
 
 export default function(props) {
@@ -42,7 +42,7 @@ export default function(props) {
     }
 
     return props.scenario.steps.map((step, index) =>
-      <ScenarioStep key={step.id} step={step} index={index} onEditStep={editStep} onAddStep={addStep} onEditAndAddStep={editAndAddStep}/>
+      <StepContainer key={step.id} step={step} index={index} onEditStep={editStep} onAddStep={addStep} onEditAndAddStep={editAndAddStep}/>
     )
   }
 
