@@ -1,7 +1,7 @@
 import React from 'react';
 import Title from './feature-editor/title/Title'
 import Description from './feature-editor/description/Description'
-import Scenario from './feature-editor/scenario/Scenario'
+import ScenarioContainer from './feature-editor/scenario/ScenarioContainer'
 import { IdGenerator } from '@cucumber/messages'
 
 export default function(props) {
@@ -42,7 +42,7 @@ export default function(props) {
   if (props.ast.feature.children.length > 0) {
     const scenarioComponents = props.ast.feature.children.map((sc, index) =>
       <>
-        <Scenario key={sc.scenario.id} scenario={sc.scenario} index={index} updateFeatureChild={updateFeatureChild}
+        <ScenarioContainer key={sc.scenario.id} scenario={sc.scenario} index={index} updateFeatureChild={updateFeatureChild}
           onDeleteScenario={ deleteScenario }/>
         <button class="tiles-list__gutter-action btn--main" onClick={() => createNewScenario(index, false)}>+</button>
       </>
