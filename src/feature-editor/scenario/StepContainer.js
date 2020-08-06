@@ -17,6 +17,12 @@ export default function(props) {
     updateStepAndCreateOne(text) {
       const updatedStepAst = GherkinAstMutator.updateStep(props.step, null, text, props.index)
       props.onEditAndAddStep(updatedStepAst, props.index)
+    },
+
+    editStepDatatable(newDatatableAst) {
+      const mutableStepAST = { ...props.step }
+      mutableStepAST.dataTable = newDatatableAst
+      props.onEditStep(mutableStepAST, props.index)
     }
   }
 

@@ -15,7 +15,10 @@ class App extends React.Component {
       "  Scenario: A simple Gherkin example",
       "    Given some context",
       "    When I perform an action",
-      "    Then I should observe something",
+      "    Then I should observe",
+      "      |p1|p2|",
+      "      |a value|another value|",
+      "      |abc|41|"
     ].join("\n")
 
     const featureAst = this.computeAst(featureTxt)
@@ -51,7 +54,7 @@ class App extends React.Component {
 
   updateAst(newAst) {
     const newTxtDefinition = pretty(newAst)
-
+    console.log(newAst)
     this.setState({
       ast: newAst,
       txtDefinition: newTxtDefinition

@@ -4,13 +4,13 @@ import StepKeywordContainer from './StepKeywordContainer'
 import DatatableEditorContainer from '../datatable/DatatableEditorContainer'
 
 export default function(props) {
-  const { editStepAnnotation, editStepText, updateStepAndCreateOne } = props.stepEditionMethods
+  const { editStepAnnotation, editStepText, updateStepAndCreateOne, editStepDatatable } = props.stepEditionMethods
 
   let extraStepData = null
 
   if (props.datatable) {
     extraStepData = <div className="step-extra-data">
-      <DatatableEditorContainer datatable={props.datatable} />
+      <DatatableEditorContainer datatable={props.datatable} editDatatable={ editStepDatatable } />
     </div>
   }
 

@@ -8,7 +8,7 @@ export default function(props) {
   }
 
   return <>
-      <input type="text" autoFocus
+      <input type="text"
             defaultValue={props.text.trim()} name="text"
             onBlur={e => props.onTextChange(e.target.value)}
             onKeyDown={handleKeyDown}/>
