@@ -5,7 +5,6 @@ import GherkinAstMutator from 'lib/GherkinAstMutator'
 export default function(props) {
   const scenarioIndex = props.index
   let mutableScenarioAST = { ...props.scenario }
-
   const scenarioActions = {
     editScenarioName(newName) {
       mutableScenarioAST.name = newName
@@ -54,6 +53,7 @@ export default function(props) {
       name={ mutableScenarioAST.name }
       description={ mutableScenarioAST.description }
       steps = { mutableScenarioAST.steps }
+      examples = { mutableScenarioAST.examples }
       scenarioActions={ scenarioActions }
       scenarioStepsActions={ scenarioStepsActions }
     />

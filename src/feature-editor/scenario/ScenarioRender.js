@@ -2,6 +2,7 @@ import React from 'react'
 import ScenarioHeaderRender from './ScenarioHeaderRender'
 import Description from '../commons/Description'
 import ScenarioStepsRender from './ScenarioStepsRender'
+import ExampleTablesRender from '../examples/ExampleTablesRender'
 
 export default function(props) {
   const scenarioActions = props.scenarioActions
@@ -16,5 +17,6 @@ export default function(props) {
 
     <Description description={ props.description } updateDescription={ scenarioActions.editScenarioDescription } />
     <ScenarioStepsRender steps={ props.steps } actions={ props.scenarioStepsActions }/>
+    <ExampleTablesRender examples={ props.examples } />
   </li>
 }

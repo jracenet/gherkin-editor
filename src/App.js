@@ -11,14 +11,15 @@ class App extends React.Component {
     super(props)
     const featureTxt = [
       "Feature:",
-      "You can add a description to the feature",
-      "  Scenario: A simple Gherkin example",
-      "    Given some context",
-      "    When I perform an action",
-      "    Then I should observe",
-      "      |p1|p2|",
-      "      |a value|another value|",
-      "      |abc|41|"
+      "  Scenario Outline: eating",
+      "    Given there are <start> cucumbers",
+      "    When I eat <eat> cucumbers",
+      "    Then I should have <left> cucumbers",
+      "",
+      "Examples:",
+      "  | start | eat | left |",
+      "  |    12 |   5 |    7 |",
+      "  |    20 |   5 |   15 |"
     ].join("\n")
 
     const featureAst = this.computeAst(featureTxt)
