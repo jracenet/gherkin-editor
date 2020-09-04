@@ -17,6 +17,6 @@ export default function(props) {
 
     <Description description={ props.description } updateDescription={ scenarioActions.editScenarioDescription } />
     <ScenarioStepsRender steps={ props.steps } actions={ props.scenarioStepsActions }/>
-    <ExampleTablesRender examples={ props.examples } />
+    <ExampleTablesRender examples={ props.examples } onEditExamples={ scenarioActions.editExamples } />
   </li>
 }

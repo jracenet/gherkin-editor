@@ -55,7 +55,6 @@ class App extends React.Component {
 
   updateAst(newAst) {
     const newTxtDefinition = pretty(newAst)
-    console.log(newAst)
     this.setState({
       ast: newAst,
       txtDefinition: newTxtDefinition
