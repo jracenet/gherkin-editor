@@ -33,6 +33,11 @@ export default function({example, exampleIndex, onEditExample}) {
       onEditExample(example, exampleIndex)
     },
 
+    removeExampleRow(rowIndex) {
+      example.tableBody.splice(rowIndex, 1)
+      onEditExample(example, exampleIndex)
+    },
+
     addExampleColumn() {
       example.tableHeader.cells.push({
         value: ""

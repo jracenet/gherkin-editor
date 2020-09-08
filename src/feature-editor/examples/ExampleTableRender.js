@@ -1,7 +1,7 @@
 import React from 'react'
 import DatatableRowContainer from '../datatable/DatatableRowContainer'
 
-export default function({example, exampleIndex, exampleTableActions}) {
+export default function({example, exampleTableActions}) {
   return <table>
     <thead>
       <tr>
@@ -12,7 +12,12 @@ export default function({example, exampleIndex, exampleTableActions}) {
       </tr>
       </thead>
     <tbody>{example.tableBody.map((row, index) => {
-      return <tr><DatatableRowContainer row={ row } index={ index } editRow={ exampleTableActions.editExampleRow }/></tr>
+      return <tr>
+        <DatatableRowContainer row={ row } index={ index } editRow={ exampleTableActions.editExampleRow }/>
+          <td>
+            <button className="btn--secondary" onClick={ () => { exampleTableActions.removeExampleRow(index)} }>-</button>
+          </td>
+        </tr>
     })}</tbody>
      <tfoot>
       <tr>
