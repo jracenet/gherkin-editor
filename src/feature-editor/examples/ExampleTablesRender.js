@@ -1,5 +1,5 @@
 import React from 'react'
-import ExampleTableRender from './ExampleTableRender'
+import ExampleTableContainer from './ExampleTableContainer'
 
 export default function({examples, onEditExamples}) {
   function editExample(newExampleAST, index) {
@@ -10,7 +10,7 @@ export default function({examples, onEditExamples}) {
   const exampleList= examples.map((example, index) => {
     return <li key={ example.id }>
       <h3>{ example.keyword }</h3>
-      <ExampleTableRender example={ example } exampleIndex={ index } onEditExample={editExample}/>
+      <ExampleTableContainer example={ example } exampleIndex={ index } onEditExample={editExample}/>
     </li>
   })
   return <ul>{exampleList}</ul>
