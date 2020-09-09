@@ -4,12 +4,6 @@ import { IdGenerator } from '@cucumber/messages'
 
 export default function({example, exampleIndex, onEditExample}) {
   const exampleTableActions = {
-    editExampleHeader(newRowAST) {
-      let mutableExampleAST = {...example }
-      mutableExampleAST.tableHeader = newRowAST
-      onEditExample(mutableExampleAST, exampleIndex)
-    },
-
     editExampleRow(newRowAST, index) {
       let mutableExampleAST = {...example }
       mutableExampleAST.tableBody[index] = newRowAST
@@ -37,6 +31,14 @@ export default function({example, exampleIndex, onEditExample}) {
       example.tableBody.splice(rowIndex, 1)
       onEditExample(example, exampleIndex)
     },
+  }
+
+  const exampleTableHeaderActions = {
+    editExampleHeader(newRowAST) {
+      let mutableExampleAST = {...example }
+      mutableExampleAST.tableHeader = newRowAST
+      onEditExample(mutableExampleAST, exampleIndex)
+    },
 
     addExampleColumn() {
       example.tableHeader.cells.push({
@@ -50,8 +52,19 @@ export default function({example, exampleIndex, onEditExample}) {
       })
 
       onEditExample(example, exampleIndex)
+    },
+
+    removeExampleColumn(columnIndex) {
+      example.tableHeader.cells.splice(columnIndex, 1)
+      example.tableBody.forEach((row) => {
+        row.cells.splice(columnIndex, 1)
+      })
+
+      onEditExample(example, exampleIndex)
     }
   }
 
-  return <ExampleTableRender example={ example } exampleTableActions={ exampleTableActions } />
+  return <ExampleTableRender example={ example }
+            exampleTableActions={ exampleTableActions }
+            exampleTableHeaderActions={ exampleTableHeaderActions }/>
 }

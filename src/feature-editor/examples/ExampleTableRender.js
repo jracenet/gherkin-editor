@@ -1,16 +1,12 @@
 import React from 'react'
 import DatatableRowContainer from '../datatable/DatatableRowContainer'
+import ExampleHeaderRender from './ExampleHeaderRender'
 
-export default function({example, exampleTableActions}) {
+export default function({example, exampleTableActions, exampleTableHeaderActions}) {
   return <table>
-    <thead>
-      <tr>
-        <DatatableRowContainer row={ example.tableHeader } editRow={ exampleTableActions.editExampleHeader }/>
-        <td>
-          <button className="btn--secondary" onClick={ exampleTableActions.addExampleColumn }>+</button>
-        </td>
-      </tr>
-      </thead>
+    <ExampleHeaderRender headerCells={ example.tableHeader }
+      headerActions={ exampleTableHeaderActions } />
+
     <tbody>{example.tableBody.map((row, index) => {
       return <tr>
         <DatatableRowContainer row={ row } index={ index } editRow={ exampleTableActions.editExampleRow }/>
